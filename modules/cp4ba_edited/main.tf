@@ -1,22 +1,32 @@
-//terraform {
-//  required_providers {
-//    ibm = {
-//      source = "IBM-Cloud/ibm"
-//      version = "~> 1.12.0"
-//    }
-//  }
-//}
 
-# Configure the IBM Provider
-//provider "ibm" {
-//  region = "us-south"
-//  ibmcloud_api_key = var.ibmcloud_api_key
-//}
+provider "ibm" {
+    ibmcloud_api_key      = var.ibmcloud_api_key
+//    iaas_classic_username = var.entitled_registry_user
+//    iaas_classic_api_key  = var.iaas_classic_api_key
+    region                = var.region
+    version               = "~> 1.12"
+}
 
-//data "ibm_iam_api_key" "iam_api_key" {
-//    apikey_id = var.ibmcloud_api_key
-//}
 
+data "ibm_resource_group" "group" {
+  name = var.resource_group
+}
+
+resource "null_resource" "mkdir_kubeconfig_dir" {
+  triggers = { always_run = timestamp() }
+  provisioner "local-exec" {
+    command = "mkdir -p ${local.cluster_config_path}"
+  }
+}
+
+data "ibm_container_cluster_config" "cluster_config" {
+  depends_on = [null_resource.mkdir_kubeconfig_dir]
+  cluster_name_id   = var.cluster_id
+  resource_group_id = data.ibm_resource_group.group.id
+  config_dir        = local.cluster_config_path
+}
+
+############################# TTHIS CODE SECTION ABOVE WILL BE REMOVE AFTER THE TEST ##
 
 ########################################################################################
 
@@ -44,25 +54,6 @@ locals {
     db2_password     = var.db2_password
   })
 }
-
-data "ibm_resource_group" "group" {
-  name = var.resource_group
-}
-
-resource "null_resource" "mkdir_kubeconfig_dir" {
-  triggers = { always_run = timestamp() }
-  provisioner "local-exec" {
-    command = "mkdir -p ${local.cluster_config_path}"
-  }
-}
-
-data "ibm_container_cluster_config" "cluster_config" {
-  depends_on = [null_resource.mkdir_kubeconfig_dir]
-  cluster_name_id   = var.cluster_id
-  resource_group_id = data.ibm_resource_group.group.id
-  config_dir        = local.cluster_config_path
-}
-
 
 resource "null_resource" "installing_cp4ba" {
   count = var.enable ? 1 : 0

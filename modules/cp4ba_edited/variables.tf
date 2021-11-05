@@ -2,6 +2,8 @@ variable "ibmcloud_api_key" {
   description = "IBM Cloud API key (https://cloud.ibm.com/docs/account?topic=account-userapikey#create_user_key)"
 }
 
+variable "iaas_classic_api_key" {}
+
 variable "enable" {
   default = true
   description = "If set to true installs Cloud-Pak for Business Automation on the given cluster"
