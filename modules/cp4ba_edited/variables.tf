@@ -9,10 +9,10 @@ variable "enable" {
   description = "If set to true installs Cloud-Pak for Business Automation on the given cluster"
 }
 
-variable "config_dir" {
-  default     = "./.kube/config"
-  description = "directory to store the kubeconfig file"
-}
+//variable "config_dir" {
+//  default     = "./.kube/config"
+//  description = "directory to store the kubeconfig file"
+//}
 
 variable "region" {
   description = "Region where the cluster is created"

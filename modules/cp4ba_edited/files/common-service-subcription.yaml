@@ -4,7 +4,7 @@ metadata:
   name: ibm-common-service-operator
   namespace: openshift-operators
 spec:
-  channel: stable-v1
+  channel: v21.1
   name: ibm-common-service-operator
   source: opencloud-operators
   sourceNamespace: openshift-marketplace

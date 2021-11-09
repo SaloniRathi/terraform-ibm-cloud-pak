@@ -33,7 +33,7 @@ data "ibm_container_cluster_config" "cluster_config" {
 locals {
   cp4ba_storage_class_file              = file("${path.module}/files/cp4ba_storage_class.yaml")
   pvc_file                              = file("${path.module}/files/operator_shared_pvc.yaml")
-  catalog_source_file                   = file("${path.module}/files/catalog_source.yaml")
+  catalog_source_file                   = file("${path.module}/files/catalog_sources.yaml")
   cmn_services_subscription_file        = file("${path.module}/files/common-service-subcription.yaml")
   role_binding_file                     = file("${path.module}/files/role_binding.yaml")
   service_account_file                  = file("${path.module}/files/service_account.yaml")
@@ -91,7 +91,7 @@ resource "null_resource" "installing_cp4ba" {
       OPERATOR_PVC_FILE             = local.pvc_file
       CATALOG_SOURCE_FILE           = local.catalog_source_file
       CP4BA_SUBSCRIPTION            = local.cp4ba_subscription_file
-      CP4BA_DEPLOYMENT_CONTENT      = local.cp4ba_deployment_content
+      CP4BA_DEPLOYMENT_FILE      = local.cp4ba_deployment_content
       SECRETS_CONTENT               = local.secrets_content
       CMN_SERVICES_SUBSCRIPTION_FILE = local.cmn_services_subscription_file
       ROLE_BINDING_FILE             = local.role_binding_file
