@@ -7,7 +7,7 @@ variable "enable" {
 #   description = "IBM Cloud API key (https://cloud.ibm.com/docs/account?topic=account-userapikey#create_user_key)"
 # }
 
-variable "cluster_name_or_id" {
+variable "cluster_id" {
   default     = ""
   description = "Enter your cluster id or name to install the Cloud Pak. Leave blank to provision a new Openshift cluster."
 }
@@ -79,22 +79,6 @@ variable "db2_host_port" {
   description = "Port for DB2 instance"
 }
 
-# -------- STORAGE-CLASSES ---------
-
-# variable "sc_slow_file_storage_classname" {
-#   default = "ibmc-file-bronze-gid"
-#   description = "Slow Storage Class"
-# }
-
-# variable "sc_medium_file_storage_classname" {
-#   default = "ibmc-file-silver-gid"
-#   description = "Medium Storage Class"
-# }
-
-# variable "sc_fast_file_storage_classname" {
-#   default = "ibmc-file-gold-gid"
-#   description = "Fast Storage-Class"
-# }
 
 locals {
   docker_server                = "cp.icr.io"
