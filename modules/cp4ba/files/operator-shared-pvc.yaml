@@ -11,7 +11,7 @@
 apiVersion: storage.k8s.io/v1beta1
 kind: StorageClass
 metadata:
-  name: cp4a-file-retain-gold-gid
+  name: ibmc-file-gold-gid
   labels:
     kubernetes.io/cluster-service: "true"
 provisioner: ibm.io/ibmc-file
@@ -39,7 +39,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: cp4a-file-retain-gold-gid
+  storageClassName: ibmc-file-gold-gid
   resources:
     requests:
       storage: 1Gi
@@ -58,7 +58,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: cp4a-file-retain-gold-gid
+  storageClassName: ibmc-file-gold-gid
   resources:
     requests:
       storage: 100Gi
