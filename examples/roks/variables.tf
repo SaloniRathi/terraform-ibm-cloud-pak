@@ -1,4 +1,9 @@
 
+variable "ibmcloud_api_key" {
+  description = "IBM Cloud API Key. Go here for information on how to create: https://cloud.ibm.com/iam/apikeys"
+}
+
+
 variable "on_vpc" {
   default = false
   type        = bool
