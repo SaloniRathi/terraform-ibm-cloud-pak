@@ -32,13 +32,13 @@ module "cluster" {
   // config_network  = false
 
   // Temporary, until the issue with the API permissions issues is fixed
-  private_vlan_number = var.private_vlan_number
-  public_vlan_number  = var.public_vlan_number
+  //private_vlan_number = var.private_vlan_number
+  //public_vlan_number  = var.public_vlan_number
 
   // Parameters for the Workers
   flavors        = var.flavors
   workers_count  = var.workers_count
-  datacenter     = var.datacenter
+  //datacenter     = var.datacenter
   vpc_zone_names = var.vpc_zone_names
 }
 
@@ -64,6 +64,7 @@ output "name" {
 //   value = data.ibm_container_cluster_config.cluster_config.config_file_path
 // }
 
-output "vlan_number" {
+/*output "vlan_number" {
   value = module.cluster.vlan_number
 }
+  */
